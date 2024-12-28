@@ -9,6 +9,8 @@ interface CanvasProps {
   onUpdateBuilding: (oldBuilding: PlacedBuilding, newBuilding: PlacedBuilding) => void;
   draggedBuilding: Building | null;
   zoom: number;
+  backgroundImage?: string;
+  backgroundOpacity?: number;
 }
 
 export const Canvas: React.FC<CanvasProps> = ({
@@ -41,7 +43,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   const checkCollision = useCallback((x: number, y: number, width: number, height: number, excludeBuilding?: PlacedBuilding) => {
     return buildings.some(building => {
       if (excludeBuilding && building === excludeBuilding) return false;
-      
+
       const b1 = { x, y, width, height };
       const b2 = {
         x: building.x,
@@ -64,7 +66,7 @@ export const Canvas: React.FC<CanvasProps> = ({
     const rect = canvasRef.current.getBoundingClientRect();
     const scrollLeft = canvasRef.current.scrollLeft;
     const scrollTop = canvasRef.current.scrollTop;
-    
+
     return {
       x: Math.floor((e.clientX - rect.left + scrollLeft) / CELL_SIZE),
       y: Math.floor((e.clientY - rect.top + scrollTop) / CELL_SIZE)
@@ -86,15 +88,15 @@ export const Canvas: React.FC<CanvasProps> = ({
       x + buildingToCheck.width <= GRID_SIZE &&
       y + buildingToCheck.height <= GRID_SIZE &&
       !checkCollision(
-        x, 
-        y, 
-        buildingToCheck.width, 
-        buildingToCheck.height, 
+        x,
+        y,
+        buildingToCheck.width,
+        buildingToCheck.height,
         excludeBuilding
       )
     );
   };
-  
+
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     if ((!draggedBuilding && !selectedBuilding) || !isValid) return;
@@ -137,6 +139,50 @@ export const Canvas: React.FC<CanvasProps> = ({
     onUpdateBuilding(building, updatedBuilding);
   };
 
+  const renderBuildingContent = (building: PlacedBuilding) => {
+    if (building.customComponent) {
+      const CustomComponent = building.customComponent;
+      return <CustomComponent building={building} />;
+    }
+
+    if (building.imageUrl) {
+      return (
+        <div className="w-full h-full relative">
+          <img
+            src={building.imageUrl}
+            alt={building.name}
+            className="w-full h-full object-contain"
+          />
+          <span className="absolute bottom-1 left-1 text-xs leading-4 font-medium px-1 text-center text-white bg-gray-900/50 rounded">
+            {building.name}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <span className="text-xs leading-4 font-medium px-1 text-center text-white">
+        {building.name}
+      </span>
+    );
+  };
+
+  const getPreviewBuilding = (): PlacedBuilding | null => {
+    if (isDraggingPlaced && selectedBuilding) {
+      return selectedBuilding;
+    }
+    if (draggedBuilding) {
+      return {
+        ...draggedBuilding,
+        x: mousePos.x,
+        y: mousePos.y,
+        rotation: 0,
+      };
+    }
+    return null;
+  };
+
+
   return (
     <div
       ref={canvasRef}
@@ -154,7 +200,6 @@ export const Canvas: React.FC<CanvasProps> = ({
       onContextMenu={(e) => e.preventDefault()}
       onClick={() => setSelectedBuilding(null)}
     >
-      {/* Grid */}
       <div
         className="absolute inset-0"
         style={{
@@ -194,8 +239,7 @@ export const Canvas: React.FC<CanvasProps> = ({
           <span className="text-xs leading-4 font-medium px-1 text-center text-white">
             {building.name}
           </span>
-          
-          {/* Rotate Button */}
+
           <button
             className="absolute top-1 right-1 p-1 bg-gray-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
             onClick={(e) => handleRotateBuilding(e, building)}
@@ -208,9 +252,8 @@ export const Canvas: React.FC<CanvasProps> = ({
       {/* Preview */}
       {(draggedBuilding || isDraggingPlaced) && (
         <div
-          className={`absolute border-2 transition-colors flex items-center justify-center ${
-            isValid ? 'border-green-500 bg-green-500/20' : 'border-red-500 bg-red-500/20'
-          }`}
+          className={`absolute border-2 transition-colors flex items-center justify-center ${isValid ? 'border-green-500 bg-green-500/20' : 'border-red-500 bg-red-500/20'
+            }`}
           style={{
             left: mousePos.x * CELL_SIZE,
             top: mousePos.y * CELL_SIZE,
@@ -221,9 +264,10 @@ export const Canvas: React.FC<CanvasProps> = ({
             zIndex: 100,
           }}
         >
-          <span className="text-white text-xs font-medium px-1 text-center">
-            {(draggedBuilding || selectedBuilding)!.name}
-          </span>
+          {(() => {
+            const previewBuilding = getPreviewBuilding();
+            return previewBuilding ? renderBuildingContent(previewBuilding) : null;
+          })()}
         </div>
       )}
     </div>

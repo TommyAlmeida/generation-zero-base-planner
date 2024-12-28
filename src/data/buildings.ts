@@ -13,7 +13,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'Tall pylon made of concrete and steel. Great for adding corners and end posts to high walls.',
-    resources: { Steel: 6, Cement: 2 }
+    resources: { Steel: 6, Cement: 2 },
+    dlc: true
   },
   {
     id: 'resistance-low-pylon',
@@ -67,7 +68,8 @@ export const buildings: Building[] = [
     size: '3x1',
     ...parseSize('3x1'),
     description: 'Light chain-link fence supported by a concrete Jersey barrier.',
-    resources: { Steel: 6, Cement: 2 }
+    resources: { Steel: 6, Cement: 2 },
+    dlc: true
   },
   {
     id: 'resistance-low-wood-wall',
@@ -105,7 +107,8 @@ export const buildings: Building[] = [
     size: '1x2',
     ...parseSize('1x2'),
     description: 'A decoy designed after a human. This is meant to distract machines from other helpful structures or allies. This decoy activates once a machine comes within view.',
-    resources: { Wood: 4, Electrolyte: 2, Textile: 4 }
+    resources: { Wood: 4, Electrolyte: 2, Textile: 4 },
+    dlc: true
   },
   {
     id: 'resistance-spiked-wall-trap',
@@ -114,7 +117,8 @@ export const buildings: Building[] = [
     size: '4x3',
     ...parseSize('4x3'),
     description: 'A reinforced wall that is connected to a pressure plate system which can trigger makeshift spikes. Enemies that come in contact with any of the spikes receive moderate damage.',
-    resources: { Wood: 4, Textile: 4, Steel: 4 }
+    resources: { Wood: 4, Textile: 4, Steel: 4 },
+    dlc: true
   },
   {
     id: 'soviet-guardhouse',
@@ -132,7 +136,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'A red explosive barrel. It can be utilized as a trap to deal heavy damage to enemies caught within the blast radius.',
-    resources: { Steel: 4, Explosive: 2 }
+    resources: { Steel: 4, Explosive: 2 },
+    dlc: true
   },
   {
     id: 'resistance-sniper-tower',
@@ -141,7 +146,8 @@ export const buildings: Building[] = [
     size: '3x3',
     ...parseSize('3x3'),
     description: 'Protected sniper overwatch position. Manned by a hidden Resistance fighter who fires automatically at any hostile unit that comes within their field of view.',
-    resources: { Steel: 16, Wood: 16, Aluminum: 4 }
+    resources: { Steel: 16, Wood: 16, Aluminum: 4 },
+    dlc: true
   },
   {
     id: 'soviet-pillbox',
@@ -159,7 +165,8 @@ export const buildings: Building[] = [
     size: '4x6',
     ...parseSize('4x6'),
     description: 'A sandbag focused, defensive shooting position which allows for good defense against an onslaught of bullets.',
-    resources: { Wood: 8, Textile: 8 }
+    resources: { Wood: 8, Textile: 8 },
+    dlc: true
   },
   {
     id: 'resistance-hunting-tower',
@@ -186,7 +193,8 @@ export const buildings: Building[] = [
     size: '4x4',
     ...parseSize('4x4'),
     description: 'A specially constructed floor that is connected to a pressure plate system which can trigger makeshift spikes. Enemies that come in contact with the activated spikes receive moderate damage.',
-    resources: { Wood: 4, Textile: 4, Steel: 4 }
+    resources: { Wood: 4, Textile: 4, Steel: 4 },
+    dlc: true
   },
   {
     id: 'resistance-grenade-launcher-pillbox',
@@ -195,7 +203,8 @@ export const buildings: Building[] = [
     size: '4x4',
     ...parseSize('4x4'),
     description: 'A repurposed tank machine weapon. Manned by a hidden Resistance fighter that fires automatically at any hostile unit that comes within its field of view.',
-    resources: { Titanium: 4, Wood: 16, Steel: 16 }
+    resources: { Titanium: 4, Wood: 16, Steel: 16 },
+    dlc: true
   },
 
   // Stations
@@ -206,7 +215,8 @@ export const buildings: Building[] = [
     size: '5x6',
     ...parseSize('5x6'),
     description: 'Manned by a Resistance medic who will heal anybody visiting the trailer. The trailer must be kept stocked with health items.',
-    resources: { Titanium: 4, Steel: 16, Electrolyte: 8 }
+    resources: { Titanium: 4, Steel: 16, Electrolyte: 8 },
+    dlc: true
   },
   {
     id: 'consumable-crafting-station',
@@ -271,7 +281,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'Mounted Hunter trophy, a reminder of past victories.',
-    resources: { Aluminum: 1, Wood: 4 }
+    resources: { Aluminum: 1, Wood: 4 },
+    dlc: true
   },
   {
     id: 'runner-shooting-target',
@@ -289,7 +300,8 @@ export const buildings: Building[] = [
     size: '1x2',
     ...parseSize('1x2'),
     description: 'A classic jukebox that will play your choice of music. Jukebox music may attract unwanted attention.',
-    resources: { Plastic: 8, Electrolyte: 4, Wood: 8 }
+    resources: { Plastic: 8, Electrolyte: 4, Wood: 8 },
+    dlc: true
   },
   {
     id: 'large-soviet-crate',
@@ -334,7 +346,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'A motor driven spotlight on a tripod. Spotlight and automatic panning feature can be turned on or off as required.',
-    resources: { Electrolyte: 2, Steel: 4 }
+    resources: { Electrolyte: 2, Steel: 4 },
+    dlc: true
   },
   {
     id: 'resistance-banner',
@@ -361,7 +374,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'Mounted Tank trophy, a reminder of past victories.',
-    resources: { Aluminum: 1, Wood: 4 }
+    resources: { Aluminum: 1, Wood: 4 },
+    dlc: true
   },
   {
     id: 'resistance-tall-lantern',
@@ -388,7 +402,8 @@ export const buildings: Building[] = [
     size: '1x1',
     ...parseSize('1x1'),
     description: 'Mounted Runner trophy, a reminder of past victories.',
-    resources: { Aluminum: 1, Wood: 4 }
+    resources: { Aluminum: 1, Wood: 4 },
+    dlc: true
   },
   {
     id: 'hunter-shooting-target',

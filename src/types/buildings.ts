@@ -1,3 +1,4 @@
+
 export interface Building {
   id: string;
   name: string;
@@ -7,7 +8,10 @@ export interface Building {
   height: number;
   description: string;
   resources: Resources;
+  customComponent?: React.ComponentType<{ building: PlacedBuilding }>;
+  imageUrl?: string;
   rotation?: number;
+  dlc?: boolean;
 }
 
 export interface Resources {

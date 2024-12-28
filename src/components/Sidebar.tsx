@@ -102,7 +102,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onDragStart, buildingCounts })
                       <GripVertical className="w-5 h-5 text-gray-400" />
                       <div>
                         <span className="font-medium text-xs text-gray-200">{building.name}</span>
-                        <p className="text-xs text-gray-400">{building.size}</p>
+                        <div className="flex gap-2">
+                          <p className="text-xs text-gray-400">{building.size}</p>
+                          {building.dlc && <span className="text-xs font-medium text-blue-400">DLC</span>}
+                        </div>
                       </div>
                     </div>
                     <span className="text-sm text-gray-400">
