@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-gray-900 text-gray-100;
+  overflow: hidden;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.building-preview {
+  transition: transform 0.1s ease-out, border-color 0.2s ease-in-out;
+  will-change: transform;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
+
+.building-dragging {
+  transition: opacity 0.2s ease-in-out;
+}
